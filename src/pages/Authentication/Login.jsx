@@ -8,7 +8,10 @@ import axios from "axios";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { signIn, signInWithGoogle, user, loading } = useContext(AuthContext);
+  // const { signIn, signInWithGoogle, signInWithGithub ,user, loading } = useContext(AuthContext);
+  const { signIn, signInWithGoogle, githubLogin, user, loading } =
+    useContext(AuthContext);
+
   useEffect(() => {
     if (user) {
       navigate("/");
@@ -23,6 +26,27 @@ const Login = () => {
       console.log(result.user);
 
       //2. get token from server using email
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: result?.user?.email,
+        },
+        { withCredentials: true }
+      );
+      console.log(data);
+      toast.success("Signin Successful");
+      navigate(from, { replace: true });
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.message);
+    }
+  };
+  // Github Signin
+  const handleGithubSignIn = async () => {
+    try {
+      const result = await githubLogin();
+      console.log(result.user);
+
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/jwt`,
         {
@@ -111,15 +135,16 @@ const Login = () => {
               </div>
             </div>
             <div
-              onClick={handleGoogleSignIn}
+              onClick={handleGithubSignIn}
               className="flex cursor-pointer items-center justify-center  transition-colors duration-300 transform  rounded-lg   hover:bg-gray-50 "
             >
               <div className="px-4 py-2">
-                <img className=" h-8 w-10" src="https://www.logo.wine/a/logo/GitHub/GitHub-Logo.wine.svg" alt="" />
-               
+                <img
+                  className=" h-8 w-10"
+                  src="https://www.logo.wine/a/logo/GitHub/GitHub-Logo.wine.svg"
+                  alt=""
+                />
               </div>
-
-          
             </div>
           </div>
 
