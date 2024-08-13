@@ -5,7 +5,7 @@ import Login from '../pages/Authentication/Login'
 import Register from '../pages/Authentication/Register'
 
 import ErrorPage from '../pages/ErrorPage'
-import MyPostedJobs from '../pages/MyPostedJobs'
+
 // import UpdateJob from '../pages/UpdateJob'
 import PrivateRoute from './PrivateRoute'
 // import MyBids from '../pages/MyBids'
@@ -16,6 +16,7 @@ import AllBooks from '../pages/AllBooks'
 // import BookDetails from '../pages/bookDetails'
 import Details from '../pages/Details'
 import AddBook from '../pages/AddBook'
+import BorrowedBooks from '../pages/BorrowedBooks'
 
 
 
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
         path: '/book/:id',
         element: (
           <PrivateRoute>
-            {/* <BookDetails /> */}
+           
             <Details></Details>
           </PrivateRoute>
         ),
@@ -76,10 +77,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/my-posted-jobs',
+        path: '/borrowed-books',
         element: (
           <PrivateRoute>
-            <MyPostedJobs />
+            <BorrowedBooks/>
           </PrivateRoute>
         ),
       },

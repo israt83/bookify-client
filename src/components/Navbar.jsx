@@ -164,7 +164,7 @@ const Navbar = () => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "text-blue-900 px-5 py-2 font-bold border rounded border-blue-900 mr-4"
+              ? "text-[#FF3811] px-5 py-2 font-bold border rounded border-[#FF3811] mr-4"
               : "font-semibold"
           }
           to="/"
@@ -176,7 +176,7 @@ const Navbar = () => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "text-blue-900 px-5 py-2 font-bold border rounded border-blue-900 mr-4"
+              ? "text-[#FF3811] px-5 py-2 font-bold border rounded border-[#FF3811] mr-4"
               : "font-semibold"
           }
           to="/all-books"
@@ -188,7 +188,7 @@ const Navbar = () => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "text-blue-900 px-5 py-2 font-bold border rounded border-blue-900 mr-4"
+              ? "text-[#FF3811] px-5 py-2 font-bold border rounded border-[#FF3811] mr-4"
               : "font-semibold"
           }
           to="/add-book"
@@ -200,7 +200,7 @@ const Navbar = () => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "text-blue-900 px-5 py-2 font-bold border rounded border-blue-900 mr-4"
+              ? "text-[#FF3811] px-5 py-2 font-bold border rounded border-[#FF3811] mr-4"
               : "font-semibold"
           }
           to="/borrowed-books"
