@@ -26,7 +26,6 @@
 //           toast.error("Password must contain at least one uppercase letter, one lowercase letter, and be at least 6 characters long.");
 //           return;
 //         }
-    
 
 //   const handleSignUp = async (e) => {
 //     e.preventDefault();
@@ -80,9 +79,6 @@
 //     }
 //   };
 
-    
-
-
 //   return (
 //     <ToastContainer />
 //     <div className="flex justify-center items-center min-h-[calc(100vh-306px)] my-12">
@@ -131,10 +127,9 @@
 //             >
 //               <div className="px-4 py-2">
 //                 <img className=" h-8 w-10" src="https://www.logo.wine/a/logo/GitHub/GitHub-Logo.wine.svg" alt="" />
-               
+
 //               </div>
 
-          
 //             </div>
 //           </div>
 
@@ -278,7 +273,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { GoEyeClosed } from "react-icons/go";
 import { IoEyeOutline } from "react-icons/io5";
 import { ToastContainer } from "react-toastify";
@@ -302,12 +297,28 @@ const Registration = () => {
     const password = form.password.value; // Extract the password value
 
     // Password validation
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-    if (!passwordRegex.test(password)) {
-      toast.error("Password must contain at least one uppercase letter, one lowercase letter, and be at least 6 characters long.");
+    // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    // if (!passwordRegex.test(password)) {
+    //   toast.error("Password must contain at least one uppercase letter, one lowercase letter, and be at least 6 characters long.");
+    //   return;
+    // }
+    // Validation criteria
+    const minLength = 6;
+    const hasUpperCase = /[A-Z]/;
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/;
+
+    if (password.length < minLength) {
+      toast.error(`Password must be at least ${minLength} characters long.`);
       return;
     }
-
+    if (!hasUpperCase.test(password)) {
+      toast.error("Password must contain at least one uppercase letter.");
+      return;
+    }
+    if (!hasSpecialChar.test(password)) {
+      toast.error("Password must contain at least one special character.");
+      return;
+    }
     console.log({ email, password, name, photo });
 
     try {
