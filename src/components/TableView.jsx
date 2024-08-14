@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 // import { FiEdit } from "react-icons/fi";
 
-const BookCards = ({ book }) => {
+const TableView = ({ book }) => {
   const { _id, name, authorName, category, rating, image } = book || {};
   return (
     <Link to={`/book/${_id}`}>
@@ -145,4 +145,5 @@ const BookCards = ({ book }) => {
   );
 };
 
-export default BookCards;
+export default TableView;
+

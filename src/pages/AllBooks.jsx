@@ -197,20 +197,21 @@
 
 // export default AllBooks
 
-
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import BookCards from '../components/BookCards';
-
+import { useEffect, useState } from "react";
+import axios from "axios";
+import BookCards from "../components/BookCards";
+import TableView from "../components/TableView";
+import { HiOutlineViewList } from "react-icons/hi";
+import { BsGrid } from "react-icons/bs";
 
 const AllBooks = () => {
   const [itemsPerPage, setItemsPerPage] = useState(4);
   const [currentPage, setCurrentPage] = useState(1);
   const [count, setCount] = useState(0);
-  const [filter, setFilter] = useState('');
-  const [sort, setSort] = useState('');
-  const [search, setSearch] = useState('');
-  const [searchText, setSearchText] = useState('');
+  const [filter, setFilter] = useState("");
+  const [sort, setSort] = useState("");
+  const [search, setSearch] = useState("");
+  const [searchText, setSearchText] = useState("");
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -234,31 +235,31 @@ const AllBooks = () => {
   }, [filter, search]);
 
   const numberOfPages = Math.ceil(count / itemsPerPage);
-  const pages = [...Array(numberOfPages).keys()].map(element => element + 1);
+  const pages = [...Array(numberOfPages).keys()].map((element) => element + 1);
 
-  const handlePaginationButton = value => {
+  const handlePaginationButton = (value) => {
     setCurrentPage(value);
   };
 
   const handleReset = () => {
-    setFilter('');
-    setSort('');
-    setSearch('');
-    setSearchText('');
+    setFilter("");
+    setSort("");
+    setSearch("");
+    setSearchText("");
   };
 
-  const handleSearch = e => {
+  const handleSearch = (e) => {
     e.preventDefault();
     setSearch(searchText);
   };
- 
+
   return (
     <div className="container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between">
       <div>
         <div className="flex flex-col md:flex-row justify-center items-center gap-5">
           <div>
             <select
-              onChange={e => {
+              onChange={(e) => {
                 setFilter(e.target.value);
                 setCurrentPage(1);
               }}
@@ -267,10 +268,12 @@ const AllBooks = () => {
               id="category"
               className="border p-4 rounded-lg"
             >
-              <option value="">ViewMode</option>
-              <option value="Card View">Card View</option>
-              <option value="Table View">Table View</option>
-              
+              <div className="join grid grid-cols-2">
+                <button className="join-item btn btn-outline">
+                <BsGrid />
+                </button>
+                <button className="join-item btn btn-outline"><HiOutlineViewList /></button>
+              </div>
             </select>
           </div>
 
@@ -279,7 +282,7 @@ const AllBooks = () => {
               <input
                 className="px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent"
                 type="text"
-                onChange={e => setSearchText(e.target.value)}
+                onChange={(e) => setSearchText(e.target.value)}
                 value={searchText}
                 name="search"
                 placeholder="Enter Book Name"
@@ -293,7 +296,7 @@ const AllBooks = () => {
           </form>
           <div>
             <select
-              onChange={e => {
+              onChange={(e) => {
                 setSort(e.target.value);
                 setCurrentPage(1);
               }}
@@ -313,15 +316,20 @@ const AllBooks = () => {
         </div>
         <div className="grid grid-cols-1  gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 justify-center">
           {books.length > 0 ? (
-            books.map(book => <BookCards key={book._id} book={book} />)
+            books.map((book) => <BookCards key={book._id} book={book} />)
+          ) : (
+            <p>No books found</p>
+          )}
+         
+        </div>
+        <div>
+        {books.length > 0 ? (
+            books.map((book) => <TableView key={book._id} book={book} />)
           ) : (
             <p>No books found</p>
           )}
         </div>
-      
       </div>
-    
-   
 
       {/* Pagination Section */}
       <div className="flex justify-center mt-12">
@@ -350,12 +358,12 @@ const AllBooks = () => {
           </div>
         </button>
         {/* Numbers */}
-        {pages.map(btnNum => (
+        {pages.map((btnNum) => (
           <button
             onClick={() => handlePaginationButton(btnNum)}
             key={btnNum}
             className={`hidden ${
-              currentPage === btnNum ? 'bg-blue-500 text-white' : ''
+              currentPage === btnNum ? "bg-blue-500 text-white" : ""
             } px-4 py-2 mx-1 transition-colors duration-300 transform rounded-md sm:inline hover:bg-blue-500 hover:text-white`}
           >
             {btnNum}
