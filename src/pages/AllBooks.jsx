@@ -200,7 +200,8 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import BookCard from '../components/BookCard';
+import BookCards from '../components/BookCards';
+
 
 const AllBooks = () => {
   const [itemsPerPage, setItemsPerPage] = useState(4);
@@ -215,7 +216,7 @@ const AllBooks = () => {
   useEffect(() => {
     const getData = async () => {
       const { data } = await axios(
-        `http://localhost:5000/all-books?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&sort=${sort}&search=${search}`
+        `http://localhost:5000/all-books?page=${currentPage}&size=${itemsPerPage}&sort=${sort}&search=${search}`
       );
       setBooks(data);
     };
@@ -250,7 +251,7 @@ const AllBooks = () => {
     e.preventDefault();
     setSearch(searchText);
   };
-
+ 
   return (
     <div className="container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between">
       <div>
@@ -266,11 +267,10 @@ const AllBooks = () => {
               id="category"
               className="border p-4 rounded-lg"
             >
-              <option value="">Filter By Category</option>
-              <option value="Arts & Music">Arts & Music</option>
-              <option value="Entertainment">Entertainment</option>
-              <option value="Science & Math">Science & Math</option>
-              <option value="Hobbies & Craft">Hobbies & Craft</option>
+              <option value="">ViewMode</option>
+              <option value="Card View">Card View</option>
+              <option value="Table View">Table View</option>
+              
             </select>
           </div>
 
@@ -282,8 +282,8 @@ const AllBooks = () => {
                 onChange={e => setSearchText(e.target.value)}
                 value={searchText}
                 name="search"
-                placeholder="Enter Book Title"
-                aria-label="Enter Book Title"
+                placeholder="Enter Book Name"
+                aria-label="Enter Book Name"
               />
 
               <button className="px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none">
@@ -311,14 +311,17 @@ const AllBooks = () => {
             Reset
           </button>
         </div>
-        <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-1  gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 justify-center">
           {books.length > 0 ? (
-            books.map(book => <BookCard key={book._id} book={book} />)
+            books.map(book => <BookCards key={book._id} book={book} />)
           ) : (
             <p>No books found</p>
           )}
         </div>
+      
       </div>
+    
+   
 
       {/* Pagination Section */}
       <div className="flex justify-center mt-12">

@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
 
+
 const BookCard = ({ book }) => {
   const { _id, name, authorName, category, rating ,image} = book || {};
   return (
@@ -35,6 +36,10 @@ const BookCard = ({ book }) => {
           </svg>
 
           {rating}
+          
+
+
+          
         </div>
         <div className="card-actions justify-end">
 
