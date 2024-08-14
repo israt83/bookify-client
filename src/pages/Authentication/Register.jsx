@@ -326,10 +326,10 @@ const Registration = () => {
       const result = await createUser(email, password);
 
       await updateUserProfile(name, photo);
-      // Optimistic UI Update
+     
       setUser({ ...result?.user, photoURL: photo, displayName: name });
       const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/jwt`,
+        `http://localhost:5000/jwt`,
         {
           email: result?.user?.email,
         },
@@ -350,7 +350,7 @@ const Registration = () => {
       const result = await signInWithGoogle();
       console.log(result.user);
       const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/jwt`,
+        `http://localhost:5000/jwt`,
         {
           email: result?.user?.email,
         },

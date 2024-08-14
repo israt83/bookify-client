@@ -294,10 +294,11 @@ const Login = () => {
     try {
       const result = await signInWithGoogle();
       const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/jwt`,
+        `http://localhost:5000/jwt`,
         { email: result?.user?.email },
         { withCredentials: true }
       );
+      console.log(data);
       toast.success("Signin Successful");
       navigate(from, { replace: true });
     } catch (err) {
@@ -310,7 +311,7 @@ const Login = () => {
     try {
       const result = await githubLogin();
       const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/jwt`,
+        `http://localhost:5000/jwt`,
         { email: result?.user?.email },
         { withCredentials: true }
       );
@@ -332,7 +333,7 @@ const Login = () => {
     try {
       const result = await signIn(email, pass);
       const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/jwt`,
+        `http://localhost:5000/jwt`,
         { email: result?.user?.email },
         { withCredentials: true }
       );
