@@ -36,7 +36,7 @@ const BookCards = ({ book }) => {
               {rating}
             </div>
             <div className="mt-4 ml-10">
-              <Link>
+              <Link to={`/update/${book._id}`}>
                 <FiEdit className="" />
               </Link>
             </div>

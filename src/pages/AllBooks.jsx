@@ -59,20 +59,7 @@ const AllBooks = () => {
     <div className="container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between">
       <div>
         <div className="flex flex-col md:flex-row justify-center items-center gap-5">
-          {/* <div>
-            <select
-              onChange={(e) => {
-                setFilter(e.target.value);
-                setCurrentPage(1);
-              }}
-              value={filter}
-              name="category"
-              id="category"
-              className="border p-4 rounded-lg"
-            >
-              
-            </select>
-          </div> */}
+    
           <div className="flex items-center">
             <button
               onClick={() => setView("card")}
@@ -133,21 +120,7 @@ const AllBooks = () => {
             Reset
           </button>
         </div>
-        {/* <div className="grid grid-cols-1  gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 justify-center">
-          {books.length > 0 ? (
-            books.map((book) => <BookCards key={book._id} book={book} />)
-          ) : (
-            <p>No books found</p>
-          )}
-         
-        </div>
-        <div>
-        {books.length > 0 ? (
-            books.map((book) => <TableView key={book._id} book={book} />)
-          ) : (
-            <p>No books found</p>
-          )}
-        </div> */}
+        
         <div>
           {view === "card" ? (
             <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 justify-center">
@@ -169,7 +142,7 @@ const AllBooks = () => {
                   <tr>
                     <th
                       scope="col"
-                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="py-3.5 px-4 text-sm font-semibold text-left rtl:text-right text-gray-500 "
                     >
                       <div className="flex items-center gap-x-3">
                         <span>Book Image</span>
@@ -178,14 +151,14 @@ const AllBooks = () => {
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className=" py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500"
                     >
                       <span>Book Name</span>
                     </th>
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className="px-2 py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500"
                     >
                       <button className="flex items-center gap-x-2">
                         <span> Author Name</span>
@@ -194,18 +167,18 @@ const AllBooks = () => {
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className=" py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500"
                     >
                       Category
                     </th>
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                      className=" py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500"
                     >
                       Rating
                     </th>
 
-                    <th className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
+                    <th className=" py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500">
                       Edit
                     </th>
                   </tr>
