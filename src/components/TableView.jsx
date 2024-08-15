@@ -12,56 +12,12 @@ const TableView = ({ book }) => {
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
             <div className="overflow-hidden border border-gray-200  md:rounded-lg">
               <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500"
-                    >
-                      <div className="flex items-center gap-x-3">
-                        <span>Title</span>
-                      </div>
-                    </th>
-
-                    <th
-                      scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
-                    >
-                      <span>Book Name</span>
-                    </th>
-
-                    <th
-                      scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
-                    >
-                      <button className="flex items-center gap-x-2">
-                        <span> Author Name</span>
-                      </button>
-                    </th>
-
-                    <th
-                      scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
-                    >
-                      Category
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
-                    >
-                      Rating
-                    </th>
-
-                    <th className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
-                      Edit
-                    </th>
-                  </tr>
-                </thead>
+           
                 <tbody className="bg-white divide-y divide-gray-200 ">
                  
                     <tr>
                       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-                        {}
+                        
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
@@ -74,25 +30,25 @@ const TableView = ({ book }) => {
                       <td className="px-4 py-4 text-sm whitespace-nowrap">
                         <div className="flex items-center gap-x-2">
                           <p
-                            className={`px-3 py-1 ${
-                              category === "Web Development" &&
-                              "text-blue-500 bg-blue-100/60"
-                            } ${
-                              category === "Graphics Design" &&
-                              "text-emerald-500 bg-emerald-100/60"
-                            } ${
-                              category === "Digital Marketing" &&
-                              "text-pink-500 bg-pink-100/60"
-                            } text-xs  rounded-full`}
+                            // className={`px-3 py-1 ${
+                            //   category === "Web Development" &&
+                            //   "text-blue-500 bg-blue-100/60"
+                            // } ${
+                            //   category === "Graphics Design" &&
+                            //   "text-emerald-500 bg-emerald-100/60"
+                            // } ${
+                            //   category === "Digital Marketing" &&
+                            //   "text-pink-500 bg-pink-100/60"
+                            // } text-xs  rounded-full`}
                           >
                             {category}
                           </p>
                         </div>
                       </td>
                       <td
-                        title={rating}
+                        
                         className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap"
-                      ></td>
+                      >{rating}</td>
                       <td className="px-4 py-4 text-sm whitespace-nowrap">
                         <div className="flex items-center gap-x-6">
                           <button className="text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none">
@@ -146,4 +102,3 @@ const TableView = ({ book }) => {
 };
 
 export default TableView;
-
