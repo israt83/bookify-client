@@ -6,17 +6,15 @@ import Register from '../pages/Authentication/Register'
 
 import ErrorPage from '../pages/ErrorPage'
 
-// import UpdateJob from '../pages/UpdateJob'
 import PrivateRoute from './PrivateRoute'
-// import MyBids from '../pages/MyBids'
-import BidRequests from '../pages/BidRequests'
 
 import UpdateProfile from '../pages/Authentication/UpdateProfile'
 import AllBooks from '../pages/AllBooks'
-// import BookDetails from '../pages/bookDetails'
+
 import Details from '../pages/Details'
 import AddBook from '../pages/AddBook'
 import BorrowedBooks from '../pages/BorrowedBooks'
+import UpdateBook from '../pages/UpdateBook'
 
 
 
@@ -58,16 +56,16 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/books/${params.id}`),
       },
-      // {
-      //   path: '/update/:id',
-      //   element: (
-      //     <PrivateRoute>
-      //       <UpdateJob />
-      //     </PrivateRoute>
-      //   ),
-      //   loader: ({ params }) =>
-      //     // fetch(`${import.meta.env.VITE_API_URL}/job/${params.id}`),
-      // },
+      {
+        path: '/update/:id',
+        element: (
+          <PrivateRoute>
+            <UpdateBook />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/books/${params.id}`),
+      },
       {
         path: '/add-book',
         element: (
@@ -84,22 +82,8 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: '/my-bids',
-        element: (
-          <PrivateRoute>
-            {/* <MyBids /> */}
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: '/bid-requests',
-        element: (
-          <PrivateRoute>
-            <BidRequests />
-          </PrivateRoute>
-        ),
-      },
+    
+     
       {
         path: '/all-books',
         element: <AllBooks/>,
