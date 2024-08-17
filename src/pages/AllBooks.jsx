@@ -1,3 +1,5 @@
+
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import BookCards from "../components/BookCards";
@@ -6,9 +8,10 @@ import { HiOutlineViewList } from "react-icons/hi";
 import { BsGrid } from "react-icons/bs";
 
 const AllBooks = () => {
-  const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [itemsPerPage, setItemsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(1);
   const [count, setCount] = useState(0);
+  const [filter, setFilter] = useState("");
   const [find, setFind] = useState("");
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
@@ -16,56 +19,36 @@ const AllBooks = () => {
   const [books, setBooks] = useState([]);
   const [view, setView] = useState("card"); // 'card' or 'table'
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const { data } = await axios(
-  //       `http://localhost:5000/all-books?page=${currentPage}&size=${itemsPerPage}&sort=${sort}&search=${search}&find=${find}`
-  //       // `http://localhost:5000/all-books?page=${currentPage}&size=${itemsPerPage}&sort=${sort}&search=${search}`
-  //     );
-  //     setBooks(data);
-  //   };
-  //   getData();
-  // }, [currentPage, find, itemsPerPage, search, sort]);
-
   useEffect(() => {
     const getData = async () => {
       const { data } = await axios(
-        `http://localhost:5000/all-books?page=${currentPage}&size=${itemsPerPage}&sort=${sort}&search=${search}&quantity=${
-          find === "quantity>0" ? "available" : ""
-        }`
+        `http://localhost:5000/all-books?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&sort=${sort}&search=${search}`
       );
       setBooks(data);
     };
     getData();
-  }, [currentPage, find, itemsPerPage, search, sort]);
+  }, [currentPage, filter, find, itemsPerPage, search, sort]);
 
-  // useEffect(() => {
-  //   const getCount = async () => {
-  //     const { data } = await axios(
-  //       `http://localhost:5000/books-count?find=${find}&search=${search}`
-  //     );
-  //     setCount(data.count);
-  //   };
-  //   getCount();
-  // }, [find, search]);
   useEffect(() => {
     const getCount = async () => {
       const { data } = await axios(
-        `http://localhost:5000/books-count?&search=${search}`
+        `http://localhost:5000/books-count?filter=${filter}&search=${search}`
       );
       setCount(data.count);
     };
     getCount();
-  }, [find, search]);
-  
+  }, [filter, search, find]);
+
   const numberOfPages = Math.ceil(count / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()].map((element) => element + 1);
 
+  // Handle pagination button
   const handlePaginationButton = (value) => {
     setCurrentPage(value);
   };
 
   const handleReset = () => {
+    setFilter("");
     setFind("");
     setSort("");
     setSearch("");
@@ -103,21 +86,7 @@ const AllBooks = () => {
               <HiOutlineViewList />
             </button>
           </div>
-          {/* <div>
-            <button
-              onChange={e => {
-                setFilter(e.target.value)
-                setCurrentPage(1)
-              }}
-              value={filter}
-              name='category'
-              id='category'
-              className='btn border p-4 rounded-lg'
-            >
-              Show available books
-              
-            </button>
-          </div> */}
+
           <button
             onClick={() => {
               setFind(find === "quantity>0" ? "" : "quantity>0");
@@ -199,7 +168,7 @@ const AllBooks = () => {
 
                             <th
                               scope="col"
-                              className=" py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500"
+                              className="py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500"
                             >
                               <span>Book Name</span>
                             </th>
@@ -215,36 +184,46 @@ const AllBooks = () => {
 
                             <th
                               scope="col"
-                              className=" py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500"
+                              className="py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500"
                             >
                               Category
                             </th>
                             <th
                               scope="col"
-                              className=" py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500"
+                              className="py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500"
                             >
                               Rating
                             </th>
 
-                            <th className=" py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500">
+                            <th className="py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500">
                               Edit
                             </th>
                           </tr>
                         </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                          {books.length > 0 ? (
+                            books.map((book) => (
+                              <TableView key={book._id} book={book} />
+                            ))
+                          ) : (
+                            <tr>
+                              <td colSpan="6" className="text-center py-4">
+                                No books found
+                              </td>
+                            </tr>
+                          )}
+                        </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
               </div>
-              {books.length > 0 ? (
-                books.map((book) => <TableView key={book._id} book={book} />)
-              ) : (
-                <p>No books found</p>
-              )}
             </div>
           )}
         </div>
       </div>
+
+
 
       {/* Pagination Section */}
       <div className="flex justify-center mt-12">
@@ -252,7 +231,7 @@ const AllBooks = () => {
         <button
           disabled={currentPage === 1}
           onClick={() => handlePaginationButton(currentPage - 1)}
-          className="px-4 py-2 mx-1 text-gray-700 disabled:text-gray-500 capitalize bg-gray-200 rounded-md disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:bg-blue-500  hover:text-white"
+          className="px-4 py-2 mx-1 text-gray-700 disabled:text-gray-500 capitalize bg-gray-200 rounded-md disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:bg-[#FF3811]  hover:text-white"
         >
           <div className="flex items-center -mx-1">
             <svg
@@ -279,8 +258,8 @@ const AllBooks = () => {
             onClick={() => handlePaginationButton(btnNum)}
             key={btnNum}
             className={`hidden ${
-              currentPage === btnNum ? "bg-blue-500 text-white" : ""
-            } px-4 py-2 mx-1 transition-colors duration-300 transform  rounded-md sm:inline hover:bg-blue-500  hover:text-white`}
+              currentPage === btnNum ? "bg-[#FF3811] text-white" : ""
+            } px-4 py-2 mx-1 transition-colors duration-300 transform  rounded-md sm:inline hover:bg-[#FF3811] hover:text-white`}
           >
             {btnNum}
           </button>
@@ -289,7 +268,7 @@ const AllBooks = () => {
         <button
           disabled={currentPage === numberOfPages}
           onClick={() => handlePaginationButton(currentPage + 1)}
-          className="px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md hover:bg-blue-500 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500"
+          className="px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md hover:bg-[#FF3811] disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500"
         >
           <div className="flex items-center -mx-1">
             <span className="mx-1">Next</span>
@@ -301,6 +280,7 @@ const AllBooks = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
+              {" "}
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
