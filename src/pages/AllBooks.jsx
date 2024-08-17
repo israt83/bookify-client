@@ -83,7 +83,7 @@ const AllBooks = () => {
         <div className="flex flex-col md:flex-row justify-center items-center gap-5">
           <div className="flex items-center">
             <button
-              // onClick={() => setView("card")}
+              onClick={() => setView("card")}
               className={`p-2 rounded-lg ${
                 view === "card"
                   ? "bg-[#FF3811] text-white"
