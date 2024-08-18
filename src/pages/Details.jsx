@@ -256,8 +256,8 @@ const Details = () => {
     }));
     const borrowData = {
       bookId: book._id,
-      // startDate,
-      // returnDate,
+      startDate,
+      returnDate,
       email: user?.email,
       userName: user?.displayName,
       authorName: book.authorName,
@@ -402,14 +402,14 @@ const Details = () => {
                       className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
                     />
                   </div>
-                  {/* <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-2">
                     <label htmlFor="returnDate">Return Date:</label>
                     <DatePicker
                       className="border p-2 rounded-md"
                       onChange={(date) => setReturnDate(date)}
                       selected={returnDate}
                     />
-                  </div> */}
+                  </div>
                 </div>
                 <div className="flex space-x-96 justify-end mt-6">
                   <button
