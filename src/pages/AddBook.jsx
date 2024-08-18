@@ -182,7 +182,7 @@ const AddBook = () => {
       quantity,
       description,
       rating,
-      bid_count: 0,
+     
     };
     try {
       const { data } = await axios.post(
