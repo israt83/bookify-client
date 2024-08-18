@@ -187,7 +187,11 @@ const AddBook = () => {
     try {
       const { data } = await axios.post(
         `http://localhost:5000/book`,
-        bookData
+        bookData ,
+        {
+          withCredentials: true, // Ensure cookies are sent with the request
+        }
+         
       );
       console.log(data);
       toast.success("Book data added successfully!");

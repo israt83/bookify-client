@@ -18,7 +18,7 @@ import bgimg5 from '../assets/images/carousel5.jpg'
 
 export default function Carousel() {
   return (
-    <div className='container px-6 py-10 mx-auto'>
+    <div className='container px-6 py-5 mx-auto'>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -44,7 +44,7 @@ export default function Carousel() {
         
         </SwiperSlide>
         <SwiperSlide>
-          <Slide
+          <Slide 
             image={bgimg2}
             text='Embark on a Literary Adventure Like Never Before! Dive into a World of Imagination and Knowledge.'
           />

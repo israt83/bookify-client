@@ -16,7 +16,7 @@ const Slide = ({ image, text }) => {
           </p>
           <br />
           <Link
-            to='/add-job'
+            to='/'
             className=' '
           >
             <button className="btn btn-outline text-white border-t-cyan-50 text-xl"><span className=''>Start Exploring</span></button>
