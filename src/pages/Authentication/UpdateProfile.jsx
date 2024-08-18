@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const UpdateProfile = () => {
   const { user, updateUserProfile } = useAuth();
@@ -25,11 +26,12 @@ const UpdateProfile = () => {
     try {
       const displayName = `${displayFirstName} ${displayLastName}`;
       await updateUserProfile(displayName, photoURL);
-      alert('Profile updated successfully');
+      toast.success('Profile updated successfully');
       navigate('/');
+      
     } catch (error) {
       console.error("Error updating profile: ", error);
-      alert('Failed to update profile');
+      toast.error('Failed to update profile');
     }
   };
 
@@ -69,7 +71,7 @@ const UpdateProfile = () => {
                 </div>
               </div>
               <div className="form-control">
-                <label className="label">
+              <label className="label">
                   <span className="label-text">Photo URL</span>
                 </label>
                 <input

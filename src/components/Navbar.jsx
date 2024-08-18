@@ -319,11 +319,11 @@ const Navbar = () => {
           </div>
         )} */}
         {!user && (
-          <li className="font-bold mr-5">
+          <a className="font-bold mr-5 px-3">
             <Link to="/login">Login</Link>
-          </li>
+          </a>
         )}
-
+      
         {user && (
           <div className="dropdown dropdown-end z-50">
             <div
