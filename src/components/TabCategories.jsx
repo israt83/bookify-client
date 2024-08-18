@@ -32,7 +32,7 @@ const TabCategories = ({books}) => {
           <>
             <TabPanel>
               <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 '>
-                {books. filter(b => b.category === 'Arts & Music').map(book => (
+                {books. filter(b => b.category === 'Arts & Music') .slice(0, 6).map(book => (
                   <BookCard key={book._id} book={book} />
                 ))}
               </div>
@@ -40,7 +40,7 @@ const TabCategories = ({books}) => {
 
             <TabPanel>
               <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 '>
-                {books.filter(b => b.category === 'Entertainment').map(book => (
+                {books.filter(b => b.category === 'Entertainment') .slice(0, 6).map(book => (
                   <BookCard key={book._id} book={book} />
                 ))}
               </div>
@@ -48,7 +48,7 @@ const TabCategories = ({books}) => {
 
             <TabPanel>
               <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 '>
-                {books.filter(b => b.category === 'Science & Math').map(book => (
+                {books.filter(b => b.category === 'Science & Math') .slice(0, 6).map(book => (
                   <BookCard key={book._id} book={book} />
                 ))}
               </div>
@@ -56,7 +56,7 @@ const TabCategories = ({books}) => {
 
             <TabPanel>
               <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 '>
-                {books.filter(b => b.category === 'Hobbies & Craft').map(book => (
+                {books.filter(b => b.category === 'Hobbies & Craft') .slice(0, 6).map(book => (
                   <BookCard key={book._id} book={book} />
                 ))}
               </div>
