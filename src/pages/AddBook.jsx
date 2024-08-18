@@ -32,7 +32,7 @@ const AddBook = () => {
     };
     try {
       const { data } = await axios.post(
-        `http://localhost:5000/book`,
+        `https://library-management-system-server-cyan.vercel.app/book`,
         bookData ,
         {
           withCredentials: true, 

@@ -1,5 +1,4 @@
-// import { useContext, useState } from 'react'
-// import DatePicker from 'react-datepicker'
+
 
 import 'react-datepicker/dist/react-datepicker.css'
 import axios from 'axios'
@@ -19,40 +18,7 @@ const UpdateBook = () => {
     rating,
     
   } = book || {}
-  // const { user } = useContext(AuthContext)
   
-  // const handleFormSubmit = async e => {
-  //   e.preventDefault()
-  //   const form = e.target
-  //   const image= form.image.value
-  //   const name = form.name.value
-  //   const  authorName = form.authorName.value
-  //   const category = form.category.value
-  //   const rating = form.rating.value
-    
-  
-  //   const bookData = {
-  //     image,
-  //     name,
-  //     authorName,
-  //     category,
-  //    rating
-     
-  //   }
-
-  //   try {
-  //     const { data } = await axios.put(
-  //       `http://localhost:5000/books/${_id}`,
-  //       bookData
-  //     )
-  //     console.log(data)
-  //     toast.success('Job Data Updated Successfully!')
-  //     navigate('/my-posted-jobs')
-  //   } catch (err) {
-  //     console.log(err)
-  //     toast.error(err.message)
-  //   }
-  // }
 
   const handleFormSubmit = async e => {
     e.preventDefault();
@@ -66,9 +32,9 @@ const UpdateBook = () => {
     const bookData = { image, name, authorName, category, rating };
   
     try {
-      const token = localStorage.getItem('token'); // Replace with how you store the token
+      const token = localStorage.getItem('token'); 
       const { data } = await axios.put(
-        `http://localhost:5000/books/${_id}`,
+        `https://library-management-system-server-cyan.vercel.app/books/${_id}`,
         bookData,
         {
           withCredentials: true, 

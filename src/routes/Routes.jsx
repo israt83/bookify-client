@@ -26,7 +26,7 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
        
-        loader: () => fetch("http://localhost:5000/books"),
+        loader: () => fetch("https://library-management-system-server-cyan.vercel.app/books"),
       },
       {
         path: "/login",
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/books/${params.id}`),
+          fetch(`https://library-management-system-server-cyan.vercel.app/books/${params.id}`),
       },
       {
         path: "/update/:id",
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/books/${params.id}`),
+          fetch(`https://library-management-system-server-cyan.vercel.app/books/${params.id}`),
       },
       {
         path: "/add-book",

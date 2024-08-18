@@ -23,7 +23,7 @@ const AllBooks = ({ book }) => {
   useEffect(() => {
     const getData = async () => {
       const { data } = await axios(
-        `http://localhost:5000/all-books?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&sort=${sort}&search=${search}`
+        `https://library-management-system-server-cyan.vercel.app/all-books?page=${currentPage}&size=${itemsPerPage}&filter=${filter}&sort=${sort}&search=${search}`
       );
       setBooks(data);
     };
@@ -33,7 +33,7 @@ const AllBooks = ({ book }) => {
   useEffect(() => {
     const getCount = async () => {
       const { data } = await axios(
-        `http://localhost:5000/books-count?filter=${filter}&search=${search}`
+        `https://library-management-system-server-cyan.vercel.app/books-count?filter=${filter}&search=${search}`
       );
       setCount(data.count);
     };
