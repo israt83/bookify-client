@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "library-managment-system"
-  }
+    "default": "library-managment-system-797c1",
+    "n": "library-managment-system-797c1"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }
